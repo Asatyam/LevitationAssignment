@@ -132,7 +132,7 @@ export default function MainForm() {
                  }
            }
     axios.post('https://x8ki-letl-twmt.n7.xano.io/api:XooRuQbs/form', data, config)
-    .then(res=>{
+    .then(()=>{
       setShowSuccess(true);
     })
     .catch((err)=>{

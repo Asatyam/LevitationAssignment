@@ -28,7 +28,6 @@ export default function Forgot(){
 
     const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
-        const body = { password, confirm};
 
         if (confirm !== password){
                     setErrors(_errors=>['Passwords do not match']);
