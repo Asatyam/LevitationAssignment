@@ -38,7 +38,6 @@ export default function Forgot(){
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         setErrors(_errors=>['Password changed succesfully']);
 
-        console.log(body);
 
     }
     return (

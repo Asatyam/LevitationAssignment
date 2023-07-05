@@ -26,7 +26,6 @@ const SingleInput: React.FC<Props> = ({
     });
   };
   const handlePhone = (v: string) => {
-    console.log(v);
     setFormInput((f: FormInput) => {
       return {
         ...f,
@@ -35,7 +34,6 @@ const SingleInput: React.FC<Props> = ({
     });
   };
 
-  console.log(id);
   if (id == 'phone_number') {
     return (
       <div className="md:grid md:grid-cols-2  p-2 flex flex-col">

@@ -49,7 +49,6 @@ export default function Login(){
 
     axios.post('https://x8ki-letl-twmt.n7.xano.io/api:XooRuQbs/auth/login',body)
     .then((res:AxiosResponse)=>{
-        console.log(res);
         localStorage.setItem('authToken', res.data.authToken);
         setErrors(e=>[...e, 'Successful Form submission']);
         navigation('/form');

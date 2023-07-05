@@ -35,6 +35,8 @@ export default function MainForm() {
     country: '',
   };
 
+  const [error, setError] = useState('');
+
   const navigation = useNavigate();
   const [formInput, setFormInput] = useState<FormInput>(initialState);
 
@@ -47,7 +49,6 @@ export default function MainForm() {
 
   useEffect(()=>{
     const authToken = localStorage.getItem('authToken');
-    console.log(authToken,'fdf');
     if(!authToken){
     navigation('/');
     }
@@ -60,7 +61,6 @@ export default function MainForm() {
     let sFile = 0;
     let mFile = 0;
     function status() {
-      console.log(formInput.name);
 
       if (formInput.name && formInput.email && formInput.phone_number) {
         identity = 1;
@@ -98,7 +98,6 @@ export default function MainForm() {
       alert(`Cannot upload files more than 5`);
       return;
     }
-    console.log(e.target.files);
     setMultipleFile(e.target.files);
   };
 
@@ -123,7 +122,6 @@ export default function MainForm() {
       });
     }
     data.append('geolocation', 'fjdkfjdsfjd');
-    console.log(...data);
 
     const token = localStorage.getItem('authToken');
     const config = {
@@ -135,10 +133,11 @@ export default function MainForm() {
            }
     axios.post('https://x8ki-letl-twmt.n7.xano.io/api:XooRuQbs/form', data, config)
     .then(res=>{
-      console.log(res);
       setShowSuccess(true);
     })
-    .catch(console.log);
+    .catch((err)=>{
+        setError(err.response.data.message);
+    });
 
   };
 
@@ -151,7 +150,6 @@ export default function MainForm() {
     },3000);
 
     const successGeo: PositionCallback = (position: GeolocationPosition) => {
-      console.log('hello');
       console.log(position);
     };
     const failureGeo: PositionErrorCallback = (
@@ -160,7 +158,6 @@ export default function MainForm() {
       console.log(error);
     };
     if (navigator.geolocation) {
-      console.log('capturing');
       navigator.geolocation.getCurrentPosition(successGeo, failureGeo);
     }
   };
@@ -250,7 +247,6 @@ export default function MainForm() {
                 className="appearance-none border-violet-400 border-2 outline-none px-2 w-72 "
                 onChange={(e: any) => {
                   setSingleFile(e.target.files[0]);
-                  console.log(e.target.files[0]);
                 }}
               />
             </div>
@@ -288,6 +284,7 @@ export default function MainForm() {
               />
             </div>
             {showSuccess && <p>Form was successfully submitted</p>}
+            {error && <p>{error}</p>}
             <button
               type="submit"
               className="border-2 border-cyan-400 px-4 py-2 bg-indigo-800 text-white font-bold rounded-md "

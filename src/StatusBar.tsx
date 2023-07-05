@@ -22,7 +22,7 @@ interface Props {
     else if(ratio === 100){
         bgcolor = 'linear-gradient(to right, #ff6666 0%, #00ff00 100%)';
     }
-    console.log(width)
+
     return( 
         <div className=' fixed h-4 rounded-xl w-60 bg-pink-200 top-4 left-6'>
                 <div className='rounded-lg h-full   transition' style={{width: width, background:bgcolor}}></div>
